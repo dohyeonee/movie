@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.my.mapper.JoinMapper">
+    <!-- 회원가입 -->
+    <insert id="join" parameterType="com.my.dto.JoinDTO">
+	<![CDATA[
+        insert into member (id, pwd, name, phone, email, age)
+        values (#{id}, #{pwd}, #{name}, #{phone}, #{email}, #{age})
+        ]]>
+	</insert>
+
+    <!-- 로그인 -->
+    <select id="login" resultType="com.my.dto.JoinDTO">
+	<![CDATA[
+        select id, pwd
+        from member
+        where id = #{id}
+          and pwd = #{pwd}
+        ]]>
+	</select>
+
+	<select id="idChk" resultType="com.my.dto.JoinDTO">
+	<![CDATA[
+		select id
+		from member
+		where id = #{id}
+		]]>
+	</select>
+</mapper>

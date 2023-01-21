@@ -5,16 +5,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
-
-    @RequestMapping("/index")
-    public String index() {
-
-        return "index";
-    }
-
-    @RequestMapping("/login")
+    @RequestMapping({"/loginForm"})
     public String login() {
         return "loginForm";
     }
 
+    @RequestMapping({"/"})
+    public String main() {
+        return "index";
+    }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.my.mapper.ReservationMapper">
+
+    <select id="getMovie" resultType="com.my.dto.MovieDTO">
+        select * from movie
+    </select>
+
+    <insert id="insert">
+        insert into register (movie, theater, day, time)
+        values (#{movie}, #{theater}, #{day}, #{time})
+    </insert>
+
+    <select id="list" resultType="com.my.dto.RegisterDTO">
+        select * from register;
+    </select>
+
+
+</mapper>

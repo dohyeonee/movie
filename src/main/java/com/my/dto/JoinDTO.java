@@ -7,5 +7,7 @@ public class JoinDTO {
     String id;
     String pwd;
     String name;
+    String phone;
+    String email;
     String age;
 }

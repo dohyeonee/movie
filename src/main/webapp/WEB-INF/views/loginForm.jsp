@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,30 +54,20 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">환영합니다</h1>
                                 </div>
-                                <form class="user">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
-                                               id="exampleInputEmail" aria-describedby="emailHelp"
-                                               placeholder="아이디">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
-                                               id="exampleInputPassword" placeholder="비밀번호">
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck">
-                                            <label class="custom-control-label" for="customCheck">아이디 기억하기
-                                                </label>
-                                        </div>
-                                    </div>
-                                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                        로그인
-                                    </a>
-                                    <a href="joinForm" class="btn btn-facebook btn-user btn-block">
-                                         회원가입
-                                    </a>
-                                </form>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user"
+                                           placeholder="아이디"
+                                           id="id">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-user"
+                                           placeholder="비밀번호" id="pwd">
+                                </div>
+                                <button class="btn btn-facebook btn-user btn-block" id="login">로그인</button>
+                                <a href="/joinForm" class="btn btn-facebook btn-user btn-block">
+                                    회원가입
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -88,6 +80,50 @@
 
 </div>
 
+
 </body>
 
 </html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $("#login").click(function() {
+            var id = $("#id");
+            var pwd = $("#pwd");
+
+            if(id.val() === "") {
+                alert("아이디를 입력해주세요");
+                id.focus();
+                return false;
+            }
+
+            if(pwd.val() === "") {
+                alert("비밀번호를 입력해주세요");
+                pwd.focus();
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/login",
+                data: {id: id.val(), pwd: pwd.val()},
+                dataType: "text",
+                success: function(result) {
+                    if(id.val() !== result) {
+                        alert("아이디와 비밀번호를 정확히 입력해주세요");
+                        return false;
+                    } else {
+                        window.location.href="/";
+                    }
+                },
+                error: function(err) {
+                    console.log(err);
+                },
+            })
+
+        })
+
+    })
+</script>
