@@ -6,8 +6,11 @@ import java.util.List;
 
 public interface ReservationService {
   List<MovieDTO> getMovie();
-  
-  void register(RegisterDTO paramRegisterDTO);
-  
-  List<RegisterDTO> list();
+
+  int registerMovie(RegisterDTO dto);
+
+  List<RegisterDTO> getReservation(String id);
+
+  int cancelReservation(int rno);
+
 }

@@ -89,7 +89,7 @@
                aria-expanded="true" aria-controls="collapsePages">
                 <span>공지사항</span>
             </a>
-            <div class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">공지사항:</h6>
                     <a class="collapse-item" href="/board/list">게시판</a>
@@ -108,14 +108,14 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#myPage"
                aria-expanded="true" aria-controls="collapsePages">
                 <span>My Page</span>
             </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div id="myPage" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">My page:</h6>
-                    <a class="collapse-item" href="/myInfoForm">회원정보 변경</a>
+                    <a class="collapse-item" href="/infoForm">회원정보 변경</a>
                     <div class="collapse-divider"></div>
                 </div>
             </div>

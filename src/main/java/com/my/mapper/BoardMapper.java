@@ -6,11 +6,11 @@ import java.util.List;
 public interface BoardMapper {
   List<BoardDTO> getList();
   
-  void insert(BoardDTO paramBoardDTO);
+  void insert(BoardDTO dto);
   
-  BoardDTO read(Long paramLong);
+  BoardDTO read(Long bno);
   
-  int delete(Long paramLong);
+  int delete(Long bno);
   
-  int update(BoardDTO paramBoardDTO);
+  int update(BoardDTO dto);
 }

@@ -1,30 +1,28 @@
 package com.my.controller;
 
-import com.my.dto.JoinDTO;
-import com.my.service.JoinServiceImpl;
+import com.my.dto.MemberDTO;
+import com.my.service.MemberServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class JoinController {
-    private JoinServiceImpl service;
+public class MemberController {
+    private MemberServiceImpl service;
 
     @Autowired
-    public JoinController(JoinServiceImpl service) {
+    public MemberController(MemberServiceImpl service) {
         this.service = service;
     }
 
     @RequestMapping(value = {"/join"}, method = {RequestMethod.POST})
     @ResponseBody
-    public String register(JoinDTO dto) throws Exception {
+    public String register(MemberDTO dto) throws Exception {
         System.out.println("dto = " + dto);
-        int join_ok = this.service.join(dto);
+        int join_ok = service.join(dto);
         if (join_ok == 1)
             return "success";
         return "fail";
@@ -32,9 +30,9 @@ public class JoinController {
 
     @RequestMapping(value = {"/login"}, method = {RequestMethod.POST})
     @ResponseBody
-    public String login(JoinDTO dto, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
+    public String login(MemberDTO dto, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
         HttpSession session = req.getSession();
-        JoinDTO login = this.service.login(dto);
+        MemberDTO login = service.login(dto);
         if (login == null) {
             session.setAttribute("member", null);
             rttr.addFlashAttribute("msg", Boolean.valueOf(false));
@@ -46,29 +44,53 @@ public class JoinController {
         return dto.getId();
     }
 
-    @RequestMapping(value = {"/login"}, method = {RequestMethod.GET})
+    @RequestMapping(value = {"/login", "/loginForm"}, method = {RequestMethod.GET})
     public String login() {
-        return "loginForm";
+        return "/member/loginForm";
     }
 
     @RequestMapping({"/logout"})
     public String logout(HttpServletRequest req) throws Exception {
         HttpSession session = req.getSession();
         session.invalidate();
-        return "loginForm";
+        return "/member/loginForm";
     }
 
     @RequestMapping({"/joinForm"})
     public String registerForm() {
-        return "joinForm";
+        return "/member/joinForm";
     }
 
     @RequestMapping(value = {"/idChk"}, method = {RequestMethod.POST})
     @ResponseBody
-    public String idChk(JoinDTO dto) {
-        JoinDTO id_chk = this.service.idChk(dto);
+    public String idChk(MemberDTO dto) {
+        MemberDTO id_chk = service.idChk(dto);
         if (id_chk == null)
             return "fail";
         return "success";
+    }
+
+    @RequestMapping("/infoForm")
+    public String myInfoForm() {
+        return "/member/infoForm";
+    }
+
+    @RequestMapping("/getInfo")
+    @ResponseBody
+    public MemberDTO getInfo(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        String id = (String)session.getAttribute("id");
+        MemberDTO dto = service.getInfo(id);
+        return dto;
+    }
+
+    @PostMapping("/infoChange")
+    @ResponseBody
+    public String myInfoChange(MemberDTO dto) {
+        int changeInfo = service.changeInfo(dto);
+        if (changeInfo == 1) {
+            return "success";
+        }
+        return "fail";
     }
 }

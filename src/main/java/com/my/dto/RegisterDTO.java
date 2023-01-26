@@ -4,10 +4,13 @@ import lombok.Data;
 
 @Data
 public class RegisterDTO {
-  String no;
-  String movie;
+  String rno;
+  String id;
+  String title;
+  String city;
   String theater;
-  String day;
+  String date;
   String time;
-
+  String seat;
+  String price;
 }

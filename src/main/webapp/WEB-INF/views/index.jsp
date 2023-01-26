@@ -49,24 +49,17 @@
         </div>
     </div>
 
-    <div class="card" style="width: 18rem;">
-        <img src="/static/Forrest%20Gump.jpg" class="card-img-top" alt="..." style="width: 400px; height: 450px;">
-        <div class="card-body text-center">
-            <a href="/reservationForm" class="btn btn-primary">예매하기</a>
-        </div>
-    </div>
-
 </div>
 
-<%--<%--%>
-<%--    if(session.getAttribute("member") == null) {--%>
+<%
+    if(session.getAttribute("id") == null) {
 
-<%--%>--%>
-<%--<script>--%>
-<%--    location.href="/loginForm";--%>
-<%--</script>--%>
+%>
+<script>
+    location.href="/loginForm";
+</script>
 
-<%--<%--%>
-<%--    }--%>
-<%--%>--%>
+<%
+    }
+%>
 <%@include file="/WEB-INF/views/includes/footer.jsp" %>

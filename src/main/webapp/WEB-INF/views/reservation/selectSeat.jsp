@@ -61,14 +61,15 @@
     <div style="display:flex; background-color: darkgray; height: 70px; align-items: center; justify-content: center;">
         <div style="color: black; display: flex; margin: 10px; width: 225px; border-right: 1px solid black; align-items: center; justify-content: center;">
             <div>
-                영화제목 : <span class="movie">${movie}</span>
+                영화제목 : <span class="title">${movie}</span>
             </div>
+            <input type="hidden" value="${id}" class="id">
         </div>
         <div>
             <div>
                 <div>
                     <span>지역 :</span>
-                    <span>${city}</span>
+                    <span class="city">${city}</span>
                 </div>
                 <div>
                     <span>극장 :</span>
@@ -104,28 +105,33 @@
             </div>
         </div>
     </div>
+
+<script src="js/seat.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        var movie = $(".movie").text();
-        var theater = $(".theater").text();
-        var date = $(".date").text();
-        var time = $(".time").text();
-        console.log(movie);
-        console.log(theater);
-        console.log(date);
-        console.log(time);
+        var id = $(".id");
+        var title = $(".title");
+        var city = $(".city");
+        var theater = $(".theater");
+        var date = $(".date");
+        var time = $(".time");
 
-        $("#reservation").click(function() {
+        $("#reservation").click(function(e) {
+            e.preventDefault();
             $.ajax({
                 type: "POST",
                 url: "/movieReservation",
-                data: JSON.stringify({movie: movie, theater: theater, date: date, time: time, price: allMoney, seat: realSeat}),
+                data: {id: id.val(), title: title.text(), city : city.text(), theater: theater.text(), date: date.text(), time: time.text(), price: allMoney, seat: realSeat.innerHTML},
                 dataType: "text",
-                processData: false,
-                // contentType: false,
                 success: function(result) {
-                    console.log(result);
+                    if(result === "success") {
+                        alert("예매 성공");
+                        parent.window.location.href="/reservationChk";
+                    } else {
+                        alert("예매 실패");
+                    }
+
                 },
                 error: function(err) {
                     console.log(err);
@@ -135,5 +141,4 @@
 
     })
 </script>
-<script src="js/seat.js"></script>
 

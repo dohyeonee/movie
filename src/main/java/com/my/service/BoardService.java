@@ -4,13 +4,13 @@ import com.my.dto.BoardDTO;
 import java.util.List;
 
 public interface BoardService {
-  void register(BoardDTO paramBoardDTO);
+  void register(BoardDTO dto);
   
-  BoardDTO get(Long paramLong);
+  BoardDTO get(Long bno);
   
-  boolean modify(BoardDTO paramBoardDTO);
+  boolean modify(BoardDTO dto);
   
-  boolean remove(Long paramLong);
+  boolean remove(Long bno);
   
   List<BoardDTO> getList();
 }

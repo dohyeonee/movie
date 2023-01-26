@@ -58,11 +58,11 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user"
                                            placeholder="아이디"
-                                           id="id">
+                                           id="id" value="test">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user"
-                                           placeholder="비밀번호" id="pwd">
+                                           placeholder="비밀번호" id="pwd" value="testtest1">
                                 </div>
                                 <button class="btn btn-facebook btn-user btn-block" id="login">로그인</button>
                                 <a href="/joinForm" class="btn btn-facebook btn-user btn-block">

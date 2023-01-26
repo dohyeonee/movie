@@ -23,15 +23,15 @@
     <div style="width: 300px; height: 485px; display: inline-block; margin-right: 10px; color: black;">
         <h3 style="text-align: center; background-color: #333333; color:white;">지역</h3>
         <ul class="list-group">
-            <li onclick="getTheater('서울', this)" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">서울</a></li>
-            <li onclick="getTheater('경기', this)" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">경기</a></li>
-            <li onclick="getTheater('인천', this)" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">인천</a></li>
-            <li onclick="getTheater('강원', this)" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">강원</a></li>
-            <li onclick="getTheater('대전/충청', this)" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">대전/충청</a></li>
-            <li onclick="getTheater('대구', this)" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">대구</a></li>
-            <li onclick="getTheater('부산/울산', this)" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">부산/울산</a></li>
-            <li onclick="getTheater('경상', this)" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">경상</a></li>
-            <li onclick="getTheater('광주/전라/제주', this)" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">광주/전라/제주</a></li>
+            <li onclick="getTheater('서울')" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">서울</a></li>
+            <li onclick="getTheater('경기')" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">경기</a></li>
+            <li onclick="getTheater('인천')" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">인천</a></li>
+            <li onclick="getTheater('강원')" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">강원</a></li>
+            <li onclick="getTheater('대전/충청')" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">대전/충청</a></li>
+            <li onclick="getTheater('대구')" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">대구</a></li>
+            <li onclick="getTheater('부산/울산')" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">부산/울산</a></li>
+            <li onclick="getTheater('경상')" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">경상</a></li>
+            <li onclick="getTheater('광주/전라/제주')" style="list-style: none; cursor:pointer;" class="list-group-item city"><a href="#" style="text-decoration: none; color: black;">광주/전라/제주</a></li>
         </ul>
     </div>
     <div style="width: 300px; height: 485px; display: inline-block; margin-right: 10px;">
@@ -70,6 +70,20 @@
 <div>
     <button class="btn btn-primary btn-lg btn-block" id="selectSeat">좌석선택</button>
 </div>
+
+<%
+    if(session.getAttribute("id") == null) {
+
+%>
+<script>
+    alert("로그인을 먼저 해주세요.")
+    location.href="/loginForm";
+</script>
+
+<%
+    }
+%>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
@@ -99,7 +113,6 @@
                 data: { movie: selectedMovie, city : selectedCity, theater: selectedTheater, date: selectedDate, time: selectedTime},
                 dataType: "text",
                 success: function(result) {
-                    console.log(window.location);
                     window.location.href="seat";
                 },
                 error: function(err) {

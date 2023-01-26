@@ -20,26 +20,26 @@ public class BoardServiceImpl implements BoardService {
   
   public void register(BoardDTO board) {
     log.info("register....." + board);
-    this.mapper.insert(board);
+    mapper.insert(board);
   }
   
   public BoardDTO get(Long bno) {
     log.info("get..........." + bno);
-    return this.mapper.read(bno);
+    return mapper.read(bno);
   }
   
   public boolean modify(BoardDTO board) {
     log.info("modify......" + board);
-    return (this.mapper.update(board) == 1);
+    return (mapper.update(board) == 1);
   }
   
   public boolean remove(Long bno) {
     log.info("remove......" + bno);
-    return (this.mapper.delete(bno) == 1);
+    return (mapper.delete(bno) == 1);
   }
   
   public List<BoardDTO> getList() {
     log.info("getList............");
-    return this.mapper.getList();
+    return mapper.getList();
   }
 }

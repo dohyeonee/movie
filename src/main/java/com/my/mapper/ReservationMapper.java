@@ -7,7 +7,10 @@ import java.util.List;
 public interface ReservationMapper {
   List<MovieDTO> getMovie();
   
-  void insert(RegisterDTO paramRegisterDTO);
-  
-  List<RegisterDTO> list();
+  int registerMovie(RegisterDTO dto);
+
+  List<RegisterDTO> getReservation(String id);
+
+  int cancelReservation(int rno);
+
 }

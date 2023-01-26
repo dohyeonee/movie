@@ -9,14 +9,18 @@
         select * from movie
     </select>
 
-    <insert id="insert">
-        insert into register (movie, theater, day, time)
-        values (#{movie}, #{theater}, #{day}, #{time})
+    <insert id="registerMovie" parameterType="com.my.dto.RegisterDTO">
+        insert into reservation (id, title, city, theater, date, time, seat , price)
+        values (#{id}, #{title}, #{city}, #{theater}, #{date}, #{time}, #{seat}, #{price})
     </insert>
 
-    <select id="list" resultType="com.my.dto.RegisterDTO">
-        select * from register;
+    <select id="getReservation" resultType="com.my.dto.RegisterDTO">
+        select title, rno, city, theater, date, time, seat, price from reservation
+        where id = #{id}
     </select>
 
-
+    <delete id="cancelReservation">
+        delete from reservation
+        where rno = #{rno}
+    </delete>
 </mapper>

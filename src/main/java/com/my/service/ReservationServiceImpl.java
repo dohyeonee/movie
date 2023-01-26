@@ -20,14 +20,19 @@ public class ReservationServiceImpl implements ReservationService {
   
   public List<MovieDTO> getMovie() {
     log.info("getMovie");
-    return this.mapper.getMovie();
+    return mapper.getMovie();
   }
   
-  public void register(RegisterDTO register) {
-    this.mapper.insert(register);
+  public int registerMovie(RegisterDTO dto) {
+    return mapper.registerMovie(dto);
   }
-  
-  public List<RegisterDTO> list() {
-    return this.mapper.list();
+
+  public List<RegisterDTO> getReservation(String id) {
+    return mapper.getReservation(id);
   }
+
+  public int cancelReservation(int rno) {
+    return mapper.cancelReservation(rno);
+  }
+
 }
